@@ -1,23 +1,5 @@
 import java.util.ArrayList;
 
-
-// public class Card {
-//     private String suit;
-//     private String value;
-
-//     public Card(String suit, String value) {
-//         this.suit = suit;
-//         this.value = value;
-//     }
-
-//     // getters and setters
-
-//     @Override
-//     public String toString() {
-//         return value + " of " + suit;
-//     }
-// }
-
 public class Hand {
     private ArrayList<Card> cards;
 
@@ -25,9 +7,15 @@ public class Hand {
         cards = new ArrayList<>();
     }
 
-    public void draw(Card card) {
-    // Add the card to the hand
-    cards.add(card);
+    public ArrayList<Card> getCards() {
+        return this.cards;
+    }
+    
+    public void draw(Deck deck, int numCards) {
+        for (int i = 0; i < numCards; i++) {
+            deck.dealCard();
+        }
+    
 
     // Sort the hand using a bubble sort algorithm
     for (int i = 0; i < cards.size() - 1; i++) {
@@ -53,6 +41,11 @@ private int compareCards(Card c1, Card c2) {
     public Card discard(Card card) {
         return cards.remove(cards.indexOf(card));
     }
+
+    public Card discard(int[] discardIndices) {
+        return cards.remove(cards.indexOf(discardIndices));
+    }
+
 
     public Card discard(String suit, String value) {
         for (Card card : cards) {
@@ -125,7 +118,7 @@ private boolean isFullHouse() {
                 temp.add(card);
             }
         }
-        return isOnePair(temp);
+        return isOnePair();
     }
     return false;
 }

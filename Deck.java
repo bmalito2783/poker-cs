@@ -61,7 +61,7 @@ public class Deck {
         ArrayList<Card> tempDeck = new ArrayList<Card>();
         Random rand = new Random();
 
-        for(int i=0; i<this.cards.size(); i++) {
+        for(int i = 0; i < this.cards.size(); i++) {
             if (tempDeck.size() == 0)
                 tempDeck.add(cards.remove(i));
             else {
