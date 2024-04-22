@@ -58,14 +58,19 @@ public class Deck {
     // Create a new empty deck, insert the cards into the new deck in random order,
     // then replace the deck.
     public void shuffle() {
-    Random random = new Random();
-    for (int i = cards.size() - 1; i >= 1; i--) {
-        int j = random.nextInt(i);
-        Card temp = cards.get(i);
-        cards.set(i, cards.get(j));
-        cards.set(j, temp);
+        ArrayList<Card> tempDeck = new ArrayList<Card>();
+        Random rand = new Random();
+
+        for(int i=0; i<this.cards.size(); i++) {
+            if (tempDeck.size() < 2)
+                tempDeck.add(cards.remove(i));
+            else {
+                int pos = rand.nextInt(tempDeck.size()-1);
+                tempDeck.add(pos, cards.remove(i));
+            }
+        }
+        cards = tempDeck;
     }
-}
     
     // Initialize the list to a full 52 card deck (no shuffle).
     private void createCards() {
